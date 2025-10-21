@@ -12,6 +12,10 @@ public class BusNovaTech {
 
     public static void main(String[] args) {
         System.out.println("Hello World!, Andrew");
+<<<<<<< HEAD
         System.out.println("Hello World!, Samuel");
+=======
+        System.out.println("Test commit");
+>>>>>>> d917d06046ab5d5be10931444fd99d6e5ee64545
     }
 }
