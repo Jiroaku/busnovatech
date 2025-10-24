@@ -1,6 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
 
 package cr.ac.ufidelitas.proyecto.busnovatech;
 
@@ -11,13 +8,7 @@ package cr.ac.ufidelitas.proyecto.busnovatech;
 public class BusNovaTech {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!, Andrew");
-        
-        System.out.println("Hello World!, Samuel");
 
-        System.out.println("Hello World!, Luna");
-
-        System.out.println("Test commit");
 
     }
 }
