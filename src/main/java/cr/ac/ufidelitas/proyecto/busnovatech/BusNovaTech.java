@@ -9,7 +9,26 @@ package cr.ac.ufidelitas.proyecto.busnovatech;
 public class BusNovaTech {
 
     public static void main(String[] args) {
+        
+        PersistenciaCola persistencia = new PersistenciaCola();
+        
+        //Cargamos la cola si existe
+        ColaPrioridad cola = persistencia.deserializarCola("Tiquetes.Json");
+        
+        //Agregamos nuevos tiquetes
+        cola.encolar(new NodoTiquete("Gerald", 1, 25, 1500, "8:00","2:00","Express","V.I.P" ));
+        cola.encolar(new NodoTiquete("Ge", 1, 25, 20.5, "09:00", "10:00", "Standar", "Economico"));
+        cola.encolar(new NodoTiquete("Ana", 1, 25, 20.5, "09:00", "10:00", "Normal", "Normal"));
 
-
+        //Mostramos cola
+        System.out.println("Cola de prioridad");
+        cola.mostrarCola();
+        
+        //Garudamos en Json
+        persitencia.serializarCola(cola. "tiquetes.json");
+        System.out.println("Tiquetes guardados en json");
+                
+                
+        
     }
 }
