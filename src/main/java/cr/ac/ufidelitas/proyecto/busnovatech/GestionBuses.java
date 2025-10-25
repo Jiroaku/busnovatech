@@ -101,6 +101,37 @@ public class GestionBuses {
         }
     }
 
+    public void cargarBusesDesdeConfig() {
+        File archivo = new File(ARCHIVO_CONFIG);
+        if (!archivo.exists()) {
+            return; // No hay configuración previa
+        }
+
+        try {
+            FileReader reader = new FileReader(archivo);
+            JsonObject config = JsonParser.parseReader(reader).getAsJsonObject();
+            reader.close();
+
+            if (config.has("buses")) {
+                JsonArray busesArray = config.getAsJsonArray("buses");
+                primero = null; // Limpiar lista existente
+
+                for (int i = 0; i < busesArray.size(); i++) {
+                    JsonObject busJson = busesArray.get(i).getAsJsonObject();
+                    String idBus = busJson.get("idBus").getAsString();
+                    String tipo = busJson.get("tipo").getAsString();
+                    String estado = busJson.get("estado").getAsString();
+
+                    Bus bus = new Bus(idBus, tipo);
+                    bus.setEstado(estado);
+                    insertarBus(bus);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al cargar buses: " + e.getMessage());
+        }
+    }
+
     public void mostrarBuses() {
         if (primero == null) {
             JOptionPane.showMessageDialog(null, "No hay buses registrados.");

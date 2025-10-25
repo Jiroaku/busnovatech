@@ -1,11 +1,11 @@
 {
-  "nombreTerminal": "San José",
+  "nombreTerminal": "Terminal BusNovaTech",
   "cantidadBuses": 3,
   "busesPreferenciales": 1,
   "busesDirectos": 1,
   "busesNormales": 1,
-  "usuario1": "admin",
-  "contra1": "123456",
-  "usuario2": "operador",
-  "contra2": "contra123"
+  "usuario1": "adm",
+  "contra1": "123",
+  "usuario2": "adm2",
+  "contra2": "1234"
 }

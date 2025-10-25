@@ -1,6 +1,8 @@
 
 package cr.ac.ufidelitas.proyecto.busnovatech;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Geral
@@ -100,5 +102,33 @@ public class ColaPrioridad {
             if (actual != null) sb.append(" -> ");
         }
         return sb.toString();
+    }
+
+    // Creación de tiquetes con interfaz de usuario - Andrew
+    public void crearTiquete() {
+        try {
+            String nombre = JOptionPane.showInputDialog("Nombre del pasajero:");
+            if (nombre == null || nombre.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Nombre es requerido");
+                return;
+            }
+
+            int id = Integer.parseInt(JOptionPane.showInputDialog("ID del pasajero:"));
+            int edad = Integer.parseInt(JOptionPane.showInputDialog("Edad del pasajero:"));
+            double moneda = Double.parseDouble(JOptionPane.showInputDialog("Monto a pagar:"));
+            String horaCompra = JOptionPane.showInputDialog("Hora de compra (HH:MM):");
+            String horaAbordaje = JOptionPane.showInputDialog("Hora de abordaje (HH:MM):");
+            String servicio = JOptionPane.showInputDialog("Tipo de servicio (VIP/Regular/Carga/Ejecutivo):");
+            String tipoBus = JOptionPane.showInputDialog("Tipo de bus (P/D/N):");
+
+            NodoTiquete nuevoTiquete = new NodoTiquete(nombre, id, edad, moneda,
+                                                      horaCompra, horaAbordaje, servicio, tipoBus);
+            this.encolar(nuevoTiquete);
+
+            JOptionPane.showMessageDialog(null, "Tiquete creado exitosamente");
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Error en los datos ingresados");
+        }
     }
 }
