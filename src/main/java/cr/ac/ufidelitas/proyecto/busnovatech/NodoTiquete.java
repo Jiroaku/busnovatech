@@ -20,8 +20,8 @@ public class NodoTiquete {
         this.id = id;
         this.edad = edad;
         this.moneda = moneda;
-        this.horaCompra = horaCompra
-        this.horaAbordaje = abordaje
+        this.horaCompra = horaCompra;
+        this.horaAbordaje = horaAbordaje;
         this.servicio = servicio;
         this.tipoBus = tipoBus;
     }
