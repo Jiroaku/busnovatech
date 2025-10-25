@@ -19,4 +19,5 @@ public class Bus {
     public String getIdBus() { return idBus; }
     public String getTipo() { return tipo; }
     public String getEstado() { return estado; }
+    public void setEstado(String estado) { this.estado = estado; }
 }
