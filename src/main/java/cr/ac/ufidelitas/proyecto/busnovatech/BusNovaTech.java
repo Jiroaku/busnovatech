@@ -11,23 +11,20 @@ package cr.ac.ufidelitas.proyecto.busnovatech;
 public class BusNovaTech {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!, Andrew");
-<<<<<<< HEAD
-<<<<<<< HEAD
-        System.out.println("Hello World!, Samuel");
-=======
-        System.out.println("Hello World!, Andrew");
-        System.out.println("Hello World!, Andrew");
-        System.out.println("Hello World!, Andrew");
-        System.out.println("Hello World!, Andrew");
-        System.out.println("Hello World!, Andrew");
-        System.out.println("Hello World!, Andrew");
-        System.out.println("Hello World!, Andrew");
-        System.out.println("Hello World!, Andrew");
-        System.out.println("Hello World!, Andrew");
->>>>>>> 69993bbb9f377aa70c1bc2e50577720a0e23cf7b
-=======
-        System.out.println("Test commit");
->>>>>>> d917d06046ab5d5be10931444fd99d6e5ee64545
+        //Prueba de que Gestor de tiquetes funciona
+        /** GestorTiquetes gestor = new GestorTiquetes();
+
+        Tiquete t1 = new Tiquete("Juan", "001", 25, "₡", "VIP", "P");
+        Tiquete t2 = new Tiquete("Ana", "002", 40, "$", "Regular", "N");
+        Tiquete t3 = new Tiquete("Luis", "003", 35, "₡", "Ejecutivo", "D");
+
+        gestor.agregarTiquete(t1);
+        gestor.agregarTiquete(t2);
+        gestor.agregarTiquete(t3);
+
+        gestor.mostrarCola();*/
+
+        
+
     }
 }
