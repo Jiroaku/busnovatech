@@ -9,7 +9,7 @@ package cr.ac.ufidelitas.proyecto.busnovatech;
 public class BusNovaTech {
 
     public static void main(String[] args) {
-        
+        /**
         PersistenciaCola persistencia = new PersistenciaCola();
         
         //Cargamos la cola si existe
@@ -25,9 +25,9 @@ public class BusNovaTech {
         cola.mostrarCola();
         
         //Garudamos en Json
-        persistencia.serializarCola(cola, "tiquetes.json");
-        System.out.println("Tiquetes guardados en json");
-                
+        *persistencia.serializarCola(cola, "tiquetes.json");
+        *System.out.println("Tiquetes guardados en json");
+        */
                 
         
     }
