@@ -25,7 +25,7 @@ public class BusNovaTech {
         cola.mostrarCola();
         
         //Garudamos en Json
-        persitencia.serializarCola(cola. "tiquetes.json");
+        persistencia.serializarCola(cola, "tiquetes.json");
         System.out.println("Tiquetes guardados en json");
                 
                 
