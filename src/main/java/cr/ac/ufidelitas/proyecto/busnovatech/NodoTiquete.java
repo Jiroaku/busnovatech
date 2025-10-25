@@ -5,6 +5,7 @@ package cr.ac.ufidelitas.proyecto.busnovatech;
  * @author Geral
  */
 public class NodoTiquete {
+    //Usamos private para proteger la informacion
     private String nombre;
     private int id;
     private int edad;
@@ -14,6 +15,8 @@ public class NodoTiquete {
     private String servicio;
     private String tipoBus;
     
+    
+    //Constructor 
     public NodoTiquete(String nombre,int id, int edad, double moneda, String horaCompra,
                        String horaAbordaje, String servicio, String tipoBus){
         this.nombre = nombre;
@@ -26,6 +29,7 @@ public class NodoTiquete {
         this.tipoBus = tipoBus;
     }
 
+    //Getters
     public String getNombre() {
         return nombre;
     }
@@ -58,6 +62,9 @@ public class NodoTiquete {
         return tipoBus;
     }
 
+    
+    
+    //Setters
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
@@ -90,6 +97,7 @@ public class NodoTiquete {
         this.tipoBus = tipoBus;
     }
 
+    //toString para reimprimir de manera senscilla 
     @Override
     public String toString() {
         return "NodoTiquete{" +
@@ -105,8 +113,4 @@ public class NodoTiquete {
         
         
     }
-    
-    
-    
-    
 }
