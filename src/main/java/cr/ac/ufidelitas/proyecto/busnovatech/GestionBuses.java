@@ -6,50 +6,63 @@ package cr.ac.ufidelitas.proyecto.busnovatech;
  * @author samim
  */
 import javax.swing.*;
-import java.io.*;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonParser;
 
 public class GestionBuses {
 
     private NodoBus primero; // cabeza de la lista
-    private final String ARCHIVO_CONFIG = "config.json";
-    private final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public GestionBuses() {
         primero = null;
     }
 
-    public void configurarBuses() {
-        int cantidadTotal;
+    public GestionBuses(ConfiguracionSistema config) {
+        primero = null;
+        // Crear buses basándose en la configuración del sistema
+        if (config != null) {
+            crearBusesDesdeConfiguracion(config);
+        }
+    }
 
-        try {
-            cantidadTotal = Integer.parseInt(JOptionPane.showInputDialog(
-                    "Ingrese la cantidad total de buses:"));
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar un número válido.");
+    public void configurarBuses(ConfiguracionSistema config) {
+        if (config == null) {
+            JOptionPane.showMessageDialog(null, "No hay configuración disponible.");
             return;
         }
 
-        if (cantidadTotal < 2) {
-            JOptionPane.showMessageDialog(null, "Debe haber al menos 2 buses (1 preferencial y 1 directo).");
-            return;
+        // Limpiar buses existentes
+        primero = null;
+
+        // Crear buses basándose en la configuración del sistema
+        crearBusesDesdeConfiguracion(config);
+
+        JOptionPane.showMessageDialog(null, "Buses configurados correctamente según la configuración del sistema.");
+    }
+
+    private void crearBusesDesdeConfiguracion(ConfiguracionSistema config) {
+        int busesPreferenciales = config.getBusesPreferenciales();
+        int busesDirectos = config.getBusesDirectos();
+        int busesNormales = config.getBusesNormales();
+
+        // Crear buses basados en la configuración del sistema
+        // Buses preferenciales
+        for (int i = 1; i <= busesPreferenciales; i++) {
+            insertarBus(new Bus("P" + i, "Preferencial"));
         }
 
-        insertarBus(new Bus("P1", "Preferencial"));
-        insertarBus(new Bus("D1", "Directo"));
+        // Buses directos
+        for (int i = 1; i <= busesDirectos; i++) {
+            insertarBus(new Bus("D" + i, "Directo"));
+        }
 
-        int normales = cantidadTotal - 2;
-        for (int i = 1; i <= normales; i++) {
+        // Buses normales
+        for (int i = 1; i <= busesNormales; i++) {
             insertarBus(new Bus("N" + i, "Normal"));
         }
-
-        guardarBusesEnConfig();
-        JOptionPane.showMessageDialog(null, "Registro de buses completado correctamente.");
     }
+
+
+
+
 
     private void insertarBus(Bus nuevoBus) {
         NodoBus nuevo = new NodoBus(nuevoBus);
@@ -64,71 +77,15 @@ public class GestionBuses {
         }
     }
 
-    private void guardarBusesEnConfig() {
-        File archivo = new File(ARCHIVO_CONFIG);
-        JsonObject config;
-
-        try {
-            if (archivo.exists()) {
-                FileReader reader = new FileReader(archivo);
-                config = JsonParser.parseReader(reader).getAsJsonObject();
-                reader.close();
-            } else {
-                config = new JsonObject();
-            }
-
-            // Convertir la lista enlazada en un JsonArray
-            JsonArray busesArray = new JsonArray();
-            NodoBus actual = primero;
-            while (actual != null) {
-                JsonObject busJson = new JsonObject();
-                busJson.addProperty("idBus", actual.bus.getIdBus());
-                busJson.addProperty("tipo", actual.bus.getTipo());
-                busJson.addProperty("estado", actual.bus.getEstado());
-                busesArray.add(busJson);
-                actual = actual.siguiente;
-            }
-
-            config.add("buses", busesArray);
-
-            FileWriter writer = new FileWriter(ARCHIVO_CONFIG);
-            gson.toJson(config, writer);
-            writer.flush();
-            writer.close();
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al guardar los datos de buses: " + e.getMessage());
-        }
-    }
 
     public void cargarBusesDesdeConfig() {
-        File archivo = new File(ARCHIVO_CONFIG);
-        if (!archivo.exists()) {
-            return; // No hay configuración previa
-        }
-
-        try {
-            FileReader reader = new FileReader(archivo);
-            JsonObject config = JsonParser.parseReader(reader).getAsJsonObject();
-            reader.close();
-
-            if (config.has("buses")) {
-                JsonArray busesArray = config.getAsJsonArray("buses");
-                primero = null; // Limpiar lista existente
-
-                for (int i = 0; i < busesArray.size(); i++) {
-                    JsonObject busJson = busesArray.get(i).getAsJsonObject();
-                    String idBus = busJson.get("idBus").getAsString();
-                    String tipo = busJson.get("tipo").getAsString();
-                    String estado = busJson.get("estado").getAsString();
-
-                    Bus bus = new Bus(idBus, tipo);
-                    bus.setEstado(estado);
-                    insertarBus(bus);
-                }
+        // Cargar configuración usando ConfiguracionSistema
+        ConfiguracionSistema gestorConfig = new ConfiguracionSistema();
+        if (gestorConfig.existeConfiguracion()) {
+            ConfiguracionSistema config = gestorConfig.cargarConfiguracion();
+            if (config != null) {
+                crearBusesDesdeConfiguracion(config);
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al cargar buses: " + e.getMessage());
         }
     }
 

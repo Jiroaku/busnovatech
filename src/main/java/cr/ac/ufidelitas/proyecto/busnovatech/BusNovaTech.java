@@ -33,7 +33,7 @@ public class BusNovaTech {
             gestorConfig.guardarConfiguracion(config);
         }
 
-        GestionBuses gestorBuses = new GestionBuses();
+        GestionBuses gestorBuses = new GestionBuses(config);
         PersistenciaCola persistencia = new PersistenciaCola();
 
         //Cargar cola de tiquetes
