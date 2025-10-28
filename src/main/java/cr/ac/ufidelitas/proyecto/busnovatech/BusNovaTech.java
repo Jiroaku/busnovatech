@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author jiroaku
+ * @author Luna
  */
 //PUSE LA VERSION 2.8.9 DE GSON COMO EL PROFE
 public class BusNovaTech {

@@ -55,40 +55,6 @@ public class ConfiguracionSistema {
         }
     }
 
-    // Prueba de persistencia: borrar archivo y volver a configurar
-    public void probarPersistencia() {
-        JOptionPane.showMessageDialog(null,
-            "PRUEBA DE PERSISTENCIA\n\n" +
-            "1. Se borrará el archivo config.json\n" +
-            "2. Se ejecutará configuración inicial\n" +
-            "3. Se guardará nueva configuración\n" +
-            "4. Se verificará que se cargue correctamente");
-
-        // Borrar archivo si existe
-        File archivo = new File("config.json");
-        if (archivo.exists()) {
-            archivo.delete();
-            JOptionPane.showMessageDialog(null, "Archivo config.json eliminado");
-        }
-
-        // Ejecutar configuración inicial
-        ConfiguracionSistema config = ejecutarConfiguracionInicial();
-
-        // Guardar configuración
-        if (config != null) {
-            guardarConfiguracion(config);
-
-            // Verificar que se cargue correctamente
-            ConfiguracionSistema configCargada = cargarConfiguracion();
-            if (configCargada != null) {
-                JOptionPane.showMessageDialog(null,
-                    "PRUEBA EXITOSA\n\n" +
-                    "Configuración cargada correctamente:\n" +
-                    "Terminal: " + configCargada.getNombreTerminal() + "\n" +
-                    "Buses: " + configCargada.getCantidadBuses());
-            }
-        }
-    }
 
     // Ejecutar configuración inicial
     public ConfiguracionSistema ejecutarConfiguracionInicial() {
